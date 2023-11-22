@@ -13,8 +13,7 @@ jobs:
       - name: make env file
         shell: bash
         run:
-          touch .env
-          echo "TOKEN=${{ secrets.DISCORD_TOKEN }}" >> .env
+          touch .env && echo "TOKEN=${{ secrets.DISCORD_TOKEN }}" >> .env
 
       - name: checkout
         uses: actions/checkout@v3
@@ -41,3 +40,7 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest
+      - name: debug
+        shell: bash
+        run:
+          whoami && ls -la
