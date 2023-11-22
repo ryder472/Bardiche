@@ -25,8 +25,7 @@ jobs:
       - name: debug
         shell: bash
         run:
-          whoami
-          ls -la
+          whoami && ls -la
 
       - name: Login to Github Container Registry
         uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
