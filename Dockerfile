@@ -16,7 +16,7 @@ ENV DEVCONTAINER=true
 
 # - - -
 
-FROM gcr.io/distroless/nodejs20-debian12
+FROM gcr.io/distroless/nodejs20-debian12 as prd
 ENV NODE_ENV production
 COPY --from=base  --chown=nonroot:nonroot /app /app
 USER nonroot
