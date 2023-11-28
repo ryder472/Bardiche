@@ -28,6 +28,9 @@ jobs:
           TOKEN=${{ secrets.DISCORD_TOKEN }}
           EOF
 
+      - name: debug
+        run: id
+
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v5
