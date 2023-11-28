@@ -10,6 +10,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: bardiche
+  URL: ${ GITHUB_SERVER_URL }/${ GITHUB_REPOSITORY }
 
 jobs:
   build_and_push:
@@ -28,9 +29,8 @@ jobs:
           TOKEN=${{ secrets.DISCORD_TOKEN }}
           EOF
 
-      - name: debug
-        run: |
-          id && ls -la && whoami && yarn
+      - name: yarn install
+        run: yarn install
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
@@ -43,8 +43,8 @@ jobs:
             org.opencontainers.image.title=Bardiche
             org.opencontainers.image.vendor="online drinking party club"
             org.opencontainers.image.authors="ryder472 <gtafansa@gmail.com>"
-            org.opencontainers.image.url=${ GITHUB_SERVER_URL }/${ GITHUB_REPOSITORY }
-            org.opencontainers.image.source=${ GITHUB_SERVER_URL }/${ GITHUB_REPOSITORY }
+            org.opencontainers.image.url=${{ env.URL }}
+            org.opencontainers.image.source=${{ env.URL }}
             org.opencontainers.image.licenses=MIT
 
       - name: Login to Github Container Registry
@@ -59,5 +59,6 @@ jobs:
         with:
           context: .
           push: true
+          target: actions
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
