@@ -10,7 +10,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: bardiche
-  URL: ${ GITHUB_SERVER_URL }/${ GITHUB_REPOSITORY }
+  URL: ${{ github.server_url }}/${{ github.repository }}
 
 jobs:
   build_and_push:
@@ -36,7 +36,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}
           tags: |
             # type=semver,pattern={{version}}
           labels: |
