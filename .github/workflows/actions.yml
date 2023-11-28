@@ -30,7 +30,7 @@ jobs:
 
       - name: debug
         run: |
-          id && ls -la && whoami
+          id && ls -la && whoami && yarn
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
