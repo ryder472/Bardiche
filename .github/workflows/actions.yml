@@ -29,7 +29,8 @@ jobs:
           EOF
 
       - name: debug
-        run: id
+        run: |
+          id && ls -la && whoami
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
