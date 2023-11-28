@@ -25,7 +25,7 @@ client.once('ready', () => {
   }
 })
 
-// !timeと入力すると現在時刻を返信するように
+// (twitter|x).com にマッチするような投稿をvxtwitter.comに置換
 client.on('messageCreate', async (message: Message) => {
   if (message.author.bot) return
   if (message.content?.match('/(twitter|x)\.com/')) {
