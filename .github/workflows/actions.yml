@@ -4,8 +4,10 @@ on:
   push:
     tags:
       - "v*"
+  pull_request:
     branches:
       - "main"
+  workflow_dispatch:
 
 env:
   REGISTRY: ghcr.io
@@ -35,7 +37,7 @@ jobs:
           EOF
 
       - name: yarn install
-        run: yarn install
+        run: yarn install --production
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
@@ -43,7 +45,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}
           tags: |
-            # type=semver,pattern={{version}}
+            type=semver,pattern={{version}}
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
           labels: |
             org.opencontainers.image.title=Bardiche
@@ -64,7 +66,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
           target: prd
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
