@@ -8,12 +8,12 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "discord.js": "^14.14.1",
-    "dotenv": "^16.3.1"
+    "discord.js": "^14.27.0",
+    "dotenv": "^16.4.7"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.19.0",
-    "eslint": "^8.55.0",
+    "eslint": "^8.57.1",
     "eslint-config-standard-with-typescript": "^43.0.1",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-n": "^16.6.2",
@@ -21,6 +21,19 @@
     "eslint-plugin-react": "^7.33.2",
     "ts-node": "^10.9.2",
     "typescript": "*"
+  },
+  "resolutions": {
+    "minimatch": "^9.0.7",
+    "brace-expansion": "^2.1.4",
+    "braces": "^3.0.3",
+    "micromatch": "^4.0.8",
+    "js-yaml": "^4.3.1",
+    "ajv": "^6.14.0",
+    "flatted": "^3.4.2",
+    "picomatch": "^2.3.2",
+    "lodash": "^4.18.1",
+    "cross-spawn": "^7.0.6",
+    "diff": "^4.0.4"
   },
   "scripts": {
     "test": "ts-node src/main.ts",

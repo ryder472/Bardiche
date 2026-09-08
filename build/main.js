@@ -35,14 +35,16 @@ client.once('ready', () => {
         console.log(client.user.tag);
     }
 });
-// !timeと入力すると現在時刻を返信するように
+// (twitter|x).com にマッチするような投稿をvxtwitter.comに置換
 client.on('messageCreate', (message) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     if (message.author.bot)
         return;
     if ((_a = message.content) === null || _a === void 0 ? void 0 : _a.match('/(twitter|x)\.com/')) {
         const fixMessage = message.content.replace(/(twitter|x)\.com/, 'vxtwitter.com');
-        message.channel.send(fixMessage);
+        if (message.channel.isSendable()) {
+            message.channel.send(fixMessage);
+        }
     }
 }));
 // ボット作成時のトークンでDiscordと接続
